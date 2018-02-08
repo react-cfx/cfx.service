@@ -47,7 +47,7 @@ getUrlObj = ({
           }) => "#{baseUrl}/#{name}/#{objectId}"
           method: 'GET'
           headers: baseHeaders
-        update:
+        reload:
           uri: => "#{baseUrl}/#{name}"
           method: 'GET'
           headers: baseHeaders
