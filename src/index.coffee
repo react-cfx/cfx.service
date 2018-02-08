@@ -38,13 +38,13 @@ getUrlObj = ({
   switch typeof value
     when 'string' then urlObj =
         create:
-          uri: => "#{baseUrl}/#{name}"
+          uri: => "#{baseUrl}/#{name}?fetchWhenSave=true"
           method: 'POST'
           headers: baseHeaders
         fetch:
           uri: ({
             objectId
-          }) => "#{baseUrl}/#{name}/#{objectId}?fetchWhenSave=true"
+          }) => "#{baseUrl}/#{name}/#{objectId}"
           method: 'GET'
           headers: baseHeaders
         update:
