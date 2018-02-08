@@ -44,10 +44,10 @@ getUrlObj = ({
         fetch:
           uri: ({
             objectId
-          }) => "#{baseUrl}/#{name}/#{objectId}"
+          }) => "#{baseUrl}/#{name}/#{objectId}?fetchWhenSave=true"
           method: 'GET'
           headers: baseHeaders
-        fetchAll:
+        update:
           uri: => "#{baseUrl}/#{name}"
           method: 'GET'
           headers: baseHeaders
