@@ -35,53 +35,46 @@ getUrlObj = ({
 }) =>
 
   urlObj = {}
-
-  if typeof value is 'string'
-    urlObj =
-      create:
-        uri: => "#{baseUrl}/#{name}?fetchWhenSave=true"
-        method: 'POST'
-        headers: baseHeaders
-      fetch:
-        uri: ({
-          objectId
-        }) => "#{baseUrl}/#{name}/#{objectId}"
-        method: 'GET'
-        headers: baseHeaders
-      reload:
-        uri: => "#{baseUrl}/#{name}"
-        method: 'GET'
-        headers: baseHeaders
-      update:
-        uri: ({
-          objectId
-        }) => "#{baseUrl}/#{name}/#{objectId}"
-        method: 'PUT'
-        headers: baseHeaders
-      delete:
-        uri: ({
-          objectId
-        }) => "#{baseUrl}/#{name}/#{objectId}"
-        method: 'DELETE'
-        headers: baseHeaders
-
-  else if typeof value is 'function'
-    urlObj = value baseUrl
-
-  else if typeof value is 'object'
-    urlObj =
-      uri:
-        if value.uri?
-        then value.uri baseUrl
-        else "#{baseUrl}/#{name}"
-      method: value.method or 'POST'
-      headers: {
-        baseHeaders...
-        value.headers...
-      }
-
-  else
-    urlObj =
+  switch typeof value
+    when 'string' then urlObj =
+        create:
+          uri: => "#{baseUrl}/#{name}"
+          method: 'POST'
+          headers: baseHeaders
+        fetch:
+          uri: ({
+            objectId
+          }) => "#{baseUrl}/#{name}/#{objectId}"
+          method: 'GET'
+          headers: baseHeaders
+        fetchAll:
+          uri: => "#{baseUrl}/#{name}"
+          method: 'GET'
+          headers: baseHeaders
+        update:
+          uri: ({
+            objectId
+          }) => "#{baseUrl}/#{name}/#{objectId}"
+          method: 'PUT'
+          headers: baseHeaders
+        delete:
+          uri: ({
+            objectId
+          }) => "#{baseUrl}/#{name}/#{objectId}"
+          method: 'DELETE'
+          headers: baseHeaders
+    when 'function' then urlObj = value baseUrl
+    when 'object' then urlObj =
+        uri:
+          if value.uri?
+          then value.uri baseUrl
+          else "#{baseUrl}/#{name}"
+        method: value.method or 'POST'
+        headers: {
+          baseHeaders...
+          value.headers...
+        }
+    else urlObj =
       uri: baseUrl
       method: 'GET'
       headers: baseHeaders
