@@ -73,7 +73,6 @@ business = {
         }
 }
 
-
 urlObjs = getUrlObjs {
   urlConf
   business
@@ -104,11 +103,34 @@ changePW = () ->
     new_password: "111"
   console.log dataChange
 
-  # dataRight = await services.login.login
-  #   username: "刘章仁"
-  #   password: "111"
-  # console.log dataRight
+testsignup = () ->
+  data =
+    username: '阿仁'
+    password: '123'
+  result = await request 'http://127.0.0.1:7001/signup'
+  , {
+    dataType: 'json'
+    method: 'post'
+    data
+  }
+  console.log result
+testlogin = () ->
+  data =
+    username: '阿仁'
+    password: '123'
+  result = await request 'http://127.0.0.1:7001/login'
+  , {
+    method: 'post'
+    data
+  }
+  console.log result
+
+
+
 
 # signin()
 # login()
-changePW()
+# changePW()
+
+# testsignup()
+testlogin()
