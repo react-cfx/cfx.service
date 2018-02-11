@@ -21,74 +21,54 @@ urlConf =
     "X-LC-Key": LC_Key.key
 
 # console.log getBaseUrl urlConf
-# https://wyfcbfvh.api.lncld.net/1.1
-
-
-# 注册
-# curl -X POST \
-#   -d '{"username":"hjiang","password":"f32@ds*@&dsa","phone":"18612340000"}' \
-#   https://wyfcbfvh.api.lncld.net/1.1/users
-
-# 登录
-# curl -X POST \
-# -d '{"username":"hjiang","password":"f32@ds*@&dsa"}' \
-# https://wyfcbfvh.api.lncld.net/1.1/login
-
-# 修改密码
-# curl -X PUT \
-#   -H "X-LC-Session: qmdj8pdidnmyzp0c7yqil91oc" \
-#   -d '{"old_password":"the_old_password", "new_password":"the_new_password"}' \
-#   https://wyfcbfvh.api.lncld.net/1.1/users/55a47496e4b05001a7732c5f/updatePassword
-
 
 # 配置所需方法
 business = {
-  'Room'
-  'Bed'
   login:
     # 这个函数被getSpecialServices函数调用
+    # 然后返回里面自定义的函数
     signin: ({
       request
       baseUrl
       headers
     }) =>
       (data) =>
-        console.log data
         url = "#{baseUrl}/users"
-        # request url
-        # , {
-        #   method: 'post'
-        #   headers: headers
-        #   data
-        # }
-    login: ({
-      request
-      urlConf
-    }) =>
-      ({
-        ObjectId
-        data
-      }) =>
-        url = 'xxx'
         request url
         , {
           method: 'post'
-          headers: null
+          headers: headers
+          data
+        }
+    login: ({
+      request
+      baseUrl
+      headers
+    }) =>
+      (data) =>
+        url = "#{baseUrl}/login"
+        request url
+        , {
+          method: 'post'
+          headers: headers
           data
         }
     changePW: ({
       request
-      urlConf
+      baseUrl
+      headers
     }) =>
-      ({
-        ObjectId
-        data
-      }) =>
-        url = 'xxx'
+      (data) =>
+        objectId = data.objectId
+        url = "#{baseUrl}/users/#{objectId}/updatePassword"
+        newHeaders = {
+          headers...
+          'X-LC-Session': data.token
+        }
         request url
         , {
-          method: 'post'
-          headers: null
+          method: 'put'
+          headers: newHeaders
           data
         }
 }
@@ -98,12 +78,37 @@ urlObjs = getUrlObjs {
   urlConf
   business
 }
-console.log urlObjs
 
 services = getGroupServices {
   urlObjs
   request
 }
-console.log services
 
-services.login.signin '这里是signin2'
+signin = () ->
+  services.login.signin
+    username: "陈欢"
+    password: "123"
+    phone: "18612340000"
+
+login = () ->
+  data = await services.login.login
+    username: "陈欢"
+    password: "123"
+  console.log data
+
+changePW = () ->
+  dataChange = await services.login.changePW
+    token: 'i5rcme69mfyil0zznr8nar3jg'
+    objectId: '5a7fe44e9f54540070ebbf82'
+    old_password: "123"
+    new_password: "111"
+  console.log dataChange
+
+  # dataRight = await services.login.login
+  #   username: "刘章仁"
+  #   password: "111"
+  # console.log dataRight
+
+# signin()
+# login()
+changePW()
