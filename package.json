@@ -26,16 +26,17 @@
   },
   "homepage": "https://github.com/react-cfx/cfx.service#readme",
   "devDependencies": {
-    "coffeescript": "^2.0.2",
+    "axios": "0.17.1",
     "coffee-require": "^0.0.3",
+    "coffeescript": "^2.0.2",
     "ddeyes": "^0.0.4",
+    "json-server": "^0.12.1",
     "shelljs": "^0.7.8"
   },
   "dependencies": {
     "cfx.rollup-plugin-coffee2": "^0.1.0",
     "rollup": "^0.50.0",
     "rollup-plugin-alias": "^1.4.0",
-    "rollup-plugin-cleanup": "^2.0.0",
-    "axios": "0.17.1"
+    "rollup-plugin-cleanup": "^2.0.0"
   }
 }

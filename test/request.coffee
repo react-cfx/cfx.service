@@ -1,5 +1,5 @@
-import axios from 'axios'
 import dd from 'ddeyes'
+import axios from 'axios'
 
 export default (
   url
@@ -9,16 +9,16 @@ export default (
     data = ''
   }
 ) =>
-  # dd {
-  #   url
-  #   method
-  #   headers
-  #   data
-  # }
-  axios {
-    method: method
-    headers: headers
+  dd {
     url
+    method
+    headers
+    data
+  }
+  axios {
+    url
+    method
+    headers
     data
   }
 
