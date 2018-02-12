@@ -1,6 +1,6 @@
 {
   "name": "cfx.service",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "cfx.service",
   "main": "dist/bundle.js",
   "scripts": {
@@ -16,7 +16,10 @@
   "keywords": [
     "cfx"
   ],
-  "author": "Benny233 <1026658608@qq.com>",
+  "author": ":FooTearth <footearth@gmail.com>",
+  "contributors": [
+    "Benny233 <1026658608@qq.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/react-cfx/cfx.service/issues"
