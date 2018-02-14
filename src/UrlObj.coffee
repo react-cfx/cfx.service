@@ -3,8 +3,7 @@ export default ({
   value
   baseUrl
   baseHeaders
-}) =>
-
+}) ->
   urlObj =
     switch typeof value
       when 'string'

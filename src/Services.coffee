@@ -1,5 +1,3 @@
-import dd from 'ddeyes'
-
 export default ({
   urlObjs
   request
