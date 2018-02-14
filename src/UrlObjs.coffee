@@ -1,12 +1,17 @@
-import getBaseUrl from './getBaseUrl'
-import getUrlObj from './getUrlObj'
+import getBaseUrl from './BaseUrl'
+import getUrlObj from './UrlObj'
 
 export default ({
   urlConf
   business
 }) =>
   # 拿到基本链接，基本header
-  baseUrl = getBaseUrl urlConf
+  baseUrl = getBaseUrl {
+    urlConf
+    business
+  }
+  jsonContent =
+    "Content-Type": 'application/json'
   baseHeaders =
     if urlConf?.headers?
     then (
@@ -14,10 +19,10 @@ export default ({
       then urlConf.headers
       else {
         urlConf.headers...
-        "Content-Type": 'application/json'
+        jsonContent...
       }
     )
-    else "Content-Type": 'application/json'
+    else jsonContent
 
   # 遍历business的键，调用getObj，传进去business各属性
   # 在这里批量生成链接对象
@@ -30,7 +35,11 @@ export default ({
         getUrlObj {
           name: "#{c}"
           value: business["#{c}"]
-          baseUrl
+          (
+            if baseUrl["#{c}"]?
+            then baseUrl: baseUrl["#{c}"]
+            else { baseUrl }
+          )...
           baseHeaders
         }
       )...

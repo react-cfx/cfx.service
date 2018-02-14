@@ -9,12 +9,12 @@ export default (
     data = ''
   }
 ) =>
-  dd {
-    url
-    method
-    headers
-    data
-  }
+  # dd {
+  #   url
+  #   method
+  #   headers
+  #   data
+  # }
   axios {
     url
     method

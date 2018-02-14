@@ -1,5 +1,5 @@
-import getServices from './getServices'
-import getSpecialServices from './getSpecialServices'
+import getServices from './Services'
+import getSpecialServices from './SpecialServices'
 
 export default ({
   urlObjs
@@ -8,6 +8,7 @@ export default ({
   (
     Object.keys urlObjs
   ).reduce (r, c) =>
+
     if urlObjs["#{c}"].create
       {
         r...

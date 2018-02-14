@@ -2,10 +2,7 @@ import dd from 'ddeyes'
 import 'shelljs/make'
 import request from './request'
 
-import {
-  getUrlObjs
-  getGroupServices
-} from '../src/index'
+import getService from '../src/index'
 
 target.all = =>
   dd 'Hello World!!!'
@@ -24,14 +21,10 @@ target.jsonServer = =>
     'todos'
   }
 
-  urlObjs = getUrlObjs {
+  services = getService {
+    request
     urlConf
     business
-  }
-
-  services = getGroupServices {
-    urlObjs
-    request
   }
 
   todos = await services.todos.create
@@ -50,7 +43,23 @@ target.leanCloud = =>
   urlConf =
     withSSL: true
     host: "#{LC_Key.id[0..7].toLowerCase()}.api.lncld.net"
-    prefix: '1.1/classes'
+    prefix: ({
+      business
+    }) =>
+      base = '1.1'
+      (
+        Object.keys business
+      ).reduce (r, c) =>
+        {
+          r...
+          "#{c}":
+            if c in [
+              'todos'
+            ]
+            then "#{base}/classes"
+            else base
+        }
+      , {}
     headers:
       "X-LC-Id": LC_Key.id
       "X-LC-Key": LC_Key.key
@@ -59,13 +68,9 @@ target.leanCloud = =>
     'todos'
   }
 
-  urlObjs = getUrlObjs {
+  services = getService {
     urlConf
     business
-  }
-
-  services = getGroupServices {
-    urlObjs
     request
   }
 
