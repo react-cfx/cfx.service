@@ -5,7 +5,7 @@ export default ({
   urlConf
   business
 }) =>
-  # 拿到基本链接，基本header
+  # 拿到基本链接，基本 header
   baseUrl = getBaseUrl {
     urlConf
     business
@@ -24,7 +24,7 @@ export default ({
     )
     else jsonContent
 
-  # 遍历business的键，调用getObj，传进去business各属性
+  # 遍历 business 的键，调用 getObj，传进去 business 各属性
   # 在这里批量生成链接对象
   (
     Object.keys business

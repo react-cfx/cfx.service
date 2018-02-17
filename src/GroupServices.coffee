@@ -1,27 +1,18 @@
-import getServices from './Services'
-import getSpecialServices from './SpecialServices'
+# import dd from 'ddeyes'
+import createService from './ServiceCreate'
 
 export default ({
   urlObjs
   request
 }) =>
+
   (
     Object.keys urlObjs
   ).reduce (r, c) =>
-
-    if urlObjs["#{c}"].create
-      {
-        r...
-        "#{c}": getServices
-          urlObjs: urlObjs["#{c}"]
-          request: request
-      }
-    else
-      {
-        r...
-        "#{c}": getSpecialServices
-          urlObjs: urlObjs["#{c}"]
-          request: request
-
-      }
+    {
+      r...
+      "#{c}": createService
+        urlObjs: urlObjs[c]
+        request: request
+    }
   , {}

@@ -1,63 +1,90 @@
+# import dd from 'ddeyes'
+
 export default ({
   name
   value
   baseUrl
   baseHeaders
 }) ->
+
   urlObj =
+
     switch typeof value
+
       when 'string'
         create:
           uri: => "#{baseUrl}/#{name}"
-          method: 'POST'
           headers: baseHeaders
+          method: 'POST'
         fetch:
           uri: ({
             objectId
           }) =>
             "#{baseUrl}/#{name}/#{objectId}"
-          method: 'GET'
           headers: baseHeaders
+          method: 'GET'
         reload:
-          uri: =>
-            console.log '这里是reload'
-            "#{baseUrl}/#{name}"
-          method: 'GET'
+          uri: => "#{baseUrl}/#{name}"
           headers: baseHeaders
+          method: 'GET'
         update:
           uri: ({
             objectId
           }) => "#{baseUrl}/#{name}/#{objectId}"
-          method: 'PUT'
           headers: baseHeaders
+          method: 'PUT'
         delete:
           uri: ({
             objectId
           }) => "#{baseUrl}/#{name}/#{objectId}"
-          method: 'DELETE'
           headers: baseHeaders
+          method: 'DELETE'
 
       when 'function'
-        value baseUrl
+        "default": {
+          baseUrl
+          headers: baseHeaders
+          handler: value
+        }
 
       when 'object'
+
         (
           Object.keys value
         )
         .reduce (r, c) =>
           {
             r...
-            "#{c}": {
-              uri: value[c]
-              headers: baseHeaders
-              url: baseUrl
-            }
+            "#{c}":
+              switch typeof value[c]
+                when 'function'
+                  {
+                    baseUrl
+                    headers: baseHeaders
+                    handler: value[c]
+                  }
+
+                when 'object'
+                  {
+                    uri: => value[c].uri { baseUrl }
+                    headers: baseHeaders
+                    method: value[c].method
+                  }
+
+                else
+                  {
+                    baseUrl
+                    headers: baseHeaders
+                    handler: value[c]
+                  }
           }
         , {}
 
       else
-        uri: baseUrl
-        method: 'GET'
-        headers: baseHeaders
+        "default": {
+          baseUrl
+          headers: baseHeaders
+          method: 'GET'
+        }
 
   "#{name}": urlObj
