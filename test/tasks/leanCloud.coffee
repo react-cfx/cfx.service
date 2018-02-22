@@ -1,5 +1,4 @@
 import dd from 'ddeyes'
-import request from '../request'
 import getService from '../../src/index'
 import urlConf from './LcUrlConf'
 
@@ -12,7 +11,6 @@ export default =>
   services = getService {
     urlConf
     business
-    request
   }
 
   todos = await services.todos.create

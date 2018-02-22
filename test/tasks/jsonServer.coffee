@@ -1,5 +1,4 @@
 import dd from 'ddeyes'
-import request from '../request'
 import getService from '../../src/index'
 
 export default =>
@@ -14,7 +13,6 @@ export default =>
   }
 
   services = getService {
-    request
     urlConf
     business
   }
