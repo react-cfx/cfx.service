@@ -30,4 +30,14 @@ export default (
     )
 
   .catch (error) =>
-    console.error error.response.data
+    e = => error.message
+    e.stack = => error.stack
+    e.e = {
+      error
+      e:
+        response: error.response
+        e:
+          data: error.response.data
+    }
+    throw e
+    

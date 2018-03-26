@@ -17,9 +17,14 @@ export default =>
     business
   }
 
-  todos = await services.todos.create
-    id: '01'
-    todo: 'Hello Todos.'
-    isCompleted: false
+  try
+    todos = await services.todos.create
+      id: '01'
+      todo: 'Hello Todos.'
+      isCompleted: false
+  catch e
+    dd
+      message: e()
+      stack: e.stack()
 
   dd todos
