@@ -1,4 +1,4 @@
-import dd from 'ddeyes'
+# import dd from 'ddeyes'
 import axios from 'axios'
 
 export default (
@@ -30,14 +30,16 @@ export default (
     )
 
   .catch (error) =>
-    e = => error.message
-    e.stack = => error.stack
-    e.e = {
-      error
-      e:
-        response: error.response
-        e:
-          data: error.response.data
-    }
+    e = =>
+      if error.response?.data?
+        return error.response.data
+      if error.response?
+        return error.response
+      if error.message?
+        return error.message
+      if error.stack?
+        return error.stack
+      return error
+    e.e = error
     throw e
     
