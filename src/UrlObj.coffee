@@ -7,36 +7,38 @@ export default ({
   baseHeaders
 }) ->
 
+  baseUrl = "#{baseUrl}/#{name}"
+
   urlObj =
 
     switch typeof value
 
       when 'string'
+
         create:
-          uri: => "#{baseUrl}/#{name}"
+          uri: => baseUrl
           headers: baseHeaders
           method: 'POST'
+
         fetch:
-          uri: ({
-            objectId
-          }) =>
-            "#{baseUrl}/#{name}/#{objectId}"
+          uri: (data) =>
+            if data?.objectId?
+            then "#{baseUrl}/#{objectId}"
+            else baseUrl
           headers: baseHeaders
           method: 'GET'
-        reload:
-          uri: => "#{baseUrl}/#{name}"
-          headers: baseHeaders
-          method: 'GET'
+
         update:
           uri: ({
             objectId
-          }) => "#{baseUrl}/#{name}/#{objectId}"
+          }) => "#{baseUrl}/#{objectId}"
           headers: baseHeaders
           method: 'PUT'
+
         delete:
           uri: ({
             objectId
-          }) => "#{baseUrl}/#{name}/#{objectId}"
+          }) => "#{baseUrl}/#{objectId}"
           headers: baseHeaders
           method: 'DELETE'
 

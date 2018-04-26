@@ -1,3 +1,8 @@
+import {
+  parse as urlParse
+  format as urlFormat
+} from 'url'
+
 export default ({
   urlObjs
   request
@@ -10,22 +15,48 @@ export default ({
       r...
       "#{c}":
         if urlObj.handler?
+
         then urlObj.handler {
           request
           baseUrl: urlObj.baseUrl
           headers: urlObj.headers
         }
+
         else ( data ) =>
+
+          {
+            objectId
+            data...
+          } = data if data?.objectId?
+
           url =
-            if data?.objectId?
-            then urlObj.uri
-              objectId: data.objectId
+            if objectId?
+            then urlObj.uri {
+              objectId
+            }
             else urlObj.uri()
-          request url
-          , {
-            method: urlObj.method
-            headers: urlObj.headers
-            data
-          }
+
+          if urlObj.method is 'GET'
+
+            _urlObj = urlParse url
+
+            url = urlFormat {
+              (urlParse url)...
+              query: data
+            }
+
+            request url
+            ,
+              method: urlObj.method
+              headers: urlObj.headers
+
+          else
+
+            request url
+            , {
+              method: urlObj.method
+              headers: urlObj.headers
+              data
+            }
     }
   , {}
