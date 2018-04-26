@@ -23,7 +23,7 @@ export default ({
         fetch:
           uri: (data) =>
             if data?.objectId?
-            then "#{baseUrl}/#{objectId}"
+            then "#{baseUrl}/#{data.objectId}"
             else baseUrl
           headers: baseHeaders
           method: 'GET'
