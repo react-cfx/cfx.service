@@ -45,14 +45,14 @@ export default ({
               query: data
             }
 
-            request url.toLowerCase()
+            request url
             ,
               method: urlObj.method
               headers: urlObj.headers
 
           else
 
-            request url.toLowerCase()
+            request url
             , {
               method: urlObj.method
               headers: urlObj.headers

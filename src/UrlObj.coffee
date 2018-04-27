@@ -7,7 +7,7 @@ export default ({
   baseHeaders
 }) ->
 
-  baseUrl = "#{baseUrl}/#{name}"
+  baseUrl = "#{baseUrl}/#{name.toLowerCase()}"
 
   urlObj =
 
