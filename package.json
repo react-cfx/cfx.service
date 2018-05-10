@@ -1,40 +1,29 @@
 {
   "name": "cfx.service",
-  "version": "0.0.19",
-  "description": "cfx.service",
-  "main": "dist/bundle.js",
+  "version": "0.1.0",
+  "main": "dist/main.js",
+  "moudle": "dist/main.es.js",
   "scripts": {
-    "clean": "rm -rf ./dist",
-    "build": "rollup -c",
-    "rebuild": "npm run clean; npm run build",
+    "clean": "gulp clean",
+    "build": "gulp build",
+    "rebuild": "gulp rebuild",
     "postinstall": "npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/react-cfx/cfx.service.git"
-  },
-  "keywords": [
-    "cfx"
-  ],
-  "author": ":FooTearth <footearth@gmail.com>",
-  "contributors": [
-    "Benny233 <1026658608@qq.com>"
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/react-cfx/cfx.service/issues"
-  },
-  "homepage": "https://github.com/react-cfx/cfx.service#readme",
   "devDependencies": {
-    "coffee-require": "^0.0.4",
-    "ddeyes": "^0.0.6",
-    "json-server": "^0.12.1",
-    "shelljs": "^0.8.1"
+    "ddeyes": "^0.2.1",
+    "json-server": "^0.12.2",
+    "shelljs": "^0.8.2"
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "cfx.rollup-plugin-coffee2": "^0.1.4",
-    "rollup": "^0.57.1",
-    "rollup-plugin-cleanup": "^2.0.0"
+    "cfx.require-plugin-coffee": "^0.2.6",
+    "cfx.rollup-plugin-coffee2": "^0.2.6",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-better-rollup": "^3.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sequence": "^1.0.0",
+    "rollup": "^0.58.2",
+    "rollup-plugin-cleanup": "^3.0.0-beta.1"
   }
 }
