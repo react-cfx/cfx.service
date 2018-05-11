@@ -1,6 +1,6 @@
 {
   "name": "cfx.service",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist/main.js",
   "moudle": "dist/main.es.js",
   "scripts": {
