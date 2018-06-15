@@ -1,31 +1,18 @@
 {
-  "name": "cfx.service",
-  "version": "0.1.2",
-  "main": "dist/index.js",
   "scripts": {
-    "autod": "autod",
-    "clean": "rm -rf ./dist",
-    "build": "gulp build",
-    "rebuild": "gulp rebuild",
-    "postinstall": "npm run build"
+    "lernaclean": "lerna clean --yes",
+    "lernabootstrap": "lerna bootstrap",
+    "rebootstrap": "npm run lernaclean; npm run lernabootstrap",
+    "cleanall": "lerna run clean; lerna exec -- rm -rf ./dist ./yarn*; npm run lernaclean",
+    "rebootall": "npm run cleanall; npm run lernabootstrap",
+    "autod": "autod"
   },
   "devDependencies": {
     "autod": "^3.0.1",
-    "ddeyes": "^0.2.8",
-    "json-server": "^0.12.2",
-    "shelljs": "^0.8.2"
+    "cfx.require-plugin-coffee": "^0.2.11",
+    "lerna": "^2.11.0"
   },
   "dependencies": {
-    "@babel/runtime": "~7.0.0-beta.47",
-    "axios": "~0.18.0",
-    "cfx.require-plugin-coffee": "~0.2.10",
-    "cfx.rollup-plugin-coffee2": "~0.2.10",
-    "del": "~3.0.0",
-    "gulp": "~3.9.1",
-    "gulp-better-rollup": "~3.1.0",
-    "gulp-rename": "~1.2.3",
-    "gulp-sequence": "~1.0.0",
-    "rollup": "~0.59.0",
-    "rollup-plugin-cleanup": "~3.0.0-beta.1"
+    "lerna": "~2.11.0"
   }
 }

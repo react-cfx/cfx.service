@@ -10,17 +10,14 @@
 #
 node_modules/
 npm-debug.log*
+pnpm*.log
 
 dist
-build
-dest
 .tmp
 tmp
 
-yarn.lock
-yarn*log
-.yarn*
-
-lerna-debug.log
 package-lock.json
-package.json.lerna_backup
+
+yarn.lock
+yarn*.log
+.lock

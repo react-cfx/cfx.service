@@ -6,24 +6,13 @@ export default
   plugin: ''
   test: []
   dep: [
-    'axios'
-    'cfx.require-plugin-coffee'
-    'cfx.rollup-plugin-coffee2'
-    'del'
-    'gulp'
-    'gulp-better-rollup'
-    'gulp-rename'
-    'gulp-sequence'
-    'rollup'
-    'rollup-plugin-cleanup'
+    'lerna'
   ]
   devdep: [
     'autod'
-    'ddeyes'
-    'json-server'
-    'shelljs'
+    'cfx.require-plugin-coffee'
   ]
   exclude: [
-    './node_modules'
+    './packages'
     './.autod.conf.js'
   ]
