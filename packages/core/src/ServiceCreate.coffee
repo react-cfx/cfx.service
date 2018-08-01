@@ -23,7 +23,6 @@ export default ({
         }
 
         else ( data ) =>
-
           {
             objectId
             data...
@@ -39,16 +38,21 @@ export default ({
           if urlObj.method is 'GET'
 
             _urlObj = urlParse url
+            if data?.token?
+              {
+                token
+                _data...
+              } = data
 
-            {
-              token
-              _data...
-            } = data
-
-            url = urlFormat {
-              _urlObj...
-              query: _data
-            }
+              url = urlFormat {
+                _urlObj...
+                query: _data
+              }
+            else
+              url = urlFormat {
+                _urlObj...
+                query: data
+              }
             
             
             reqObj = 
@@ -63,6 +67,7 @@ export default ({
               }
             # dd { reqObj }
             # dd url
+            # dd data
 
             request url
             , 
