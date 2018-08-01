@@ -2,7 +2,7 @@ import {
   parse as urlParse
   format as urlFormat
 } from 'url'
-
+# import dd from 'ddeyes'
 export default ({
   urlObjs
   request
@@ -40,16 +40,34 @@ export default ({
 
             _urlObj = urlParse url
 
+            {
+              token
+              _data...
+            } = data
+
             url = urlFormat {
-              (urlParse url)...
-              query: data
+              _urlObj...
+              query: _data
             }
+            
+            
+            reqObj = 
+              method: urlObj.method
+              headers: {
+                urlObj.headers...
+                (
+                  if token?
+                  then { token }
+                  else {}
+                )...
+              }
+            # dd { reqObj }
+            # dd url
 
             request url
-            ,
-              method: urlObj.method
-              headers: urlObj.headers
-
+            , 
+              reqObj
+            
           else
 
             request url
