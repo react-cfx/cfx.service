@@ -1,6 +1,6 @@
 {
   "name": "cfx.service.core",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "main": "dist/index.js",
   "scripts": {
     "autod": "autod",
@@ -24,7 +24,7 @@
     "gulp-better-rollup": "~3.3.0",
     "gulp-rename": "~1.4.0",
     "gulp-sequence": "~1.0.0",
-    "rollup": "~0.63.5",
+    "rollup": "~0.64.1",
     "rollup-plugin-cleanup": "~3.0.0"
   }
 }
