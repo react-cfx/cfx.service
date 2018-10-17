@@ -1,7 +1,7 @@
 {
   "name": "cfx.service.baseapi",
-  "version": "0.2.10",
-  "main": "dist/bundle.js",
+  "version": "0.2.11",
+  "main": "dist/index.js",
   "scripts": {
     "autod": "autod",
     "clean": "rm -rf ./dist",
@@ -11,7 +11,7 @@
   "dependencies": {
     "cfx.require-plugin-coffee": "~0.2.13",
     "cfx.rollup-plugin-coffee2": "~0.2.13",
-    "cfx.service.core": "^0.2.10",
+    "cfx.service.core": "^0.2.11",
     "cfx.service.request": "~0.2.1",
     "del": "~3.0.0",
     "dotenv": "~6.0.0",
