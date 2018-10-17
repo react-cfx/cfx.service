@@ -38,9 +38,10 @@ export default ({
           if urlObj.method is 'GET'
 
             _urlObj = urlParse url
-            if data?.token?
+            # dd data
+            if data?.Authorization?
               {
-                token
+                Authorization
                 _data...
               } = data
 
@@ -60,8 +61,8 @@ export default ({
               headers: {
                 urlObj.headers...
                 (
-                  if token?
-                  then { token }
+                  if Authorization?
+                  then { Authorization }
                   else {}
                 )...
               }
