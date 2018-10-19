@@ -1,12 +1,13 @@
 {
   "name": "cfx.service.baseapi",
-  "version": "0.2.13",
+  "version": "0.2.14",
   "main": "dist/index.js",
   "scripts": {
     "autod": "autod",
     "clean": "rm -rf ./dist",
     "build": "gulp build",
-    "rebuild": "gulp rebuild"
+    "rebuild": "gulp rebuild",
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "cfx.require-plugin-coffee": "~0.2.13",
